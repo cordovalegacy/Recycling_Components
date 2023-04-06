@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { useParams, useNavigate } from "react-router-dom"
+import Button from "./Button"
+import PokeTypes from "./PokeTypes"
 
 const EditOne = () => {
 
@@ -70,13 +72,13 @@ const EditOne = () => {
                 <input id="new-nickname" type="text" onChange={(e) => setNewNickname(e.target.value)} value={newNickname} />
                 {errors && newNickname.length < 3 || !newNickname ? <p className="errors">{errors}</p>: null }
                 <img src={onePokemon?.image} alt="a pokemon" />
+                <PokeTypes onePokemon={onePokemon} />
                 <div>
                     <label>Berries: {onePokemon?.berryCount}</label>
                     <input id="new-nickname" type="number" onChange={(e) => setNewBerryCount(e.target.value)} value={newBerryCount} />
                 </div>
-                <p>Type: {onePokemon?.type?.charAt(0).toUpperCase() + onePokemon?.type?.slice(1)}</p>
             </div>
-            <input type="submit" value="Edit Pokemon" />
+            <Button BtnVal="Edit Pokemon"/>
         </form>
         </>
     )

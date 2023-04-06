@@ -2,6 +2,8 @@ import axios from "axios"
 import React, { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Berry from '../img/berry.png'
+import Button from "./Button"
+import PokeTypes from "./PokeTypes"
 
 const DisplayAll = () => {
 
@@ -80,25 +82,9 @@ const DisplayAll = () => {
                             <h4>{pokemon?.name?.charAt(0).toUpperCase() + pokemon?.name?.slice(1)}</h4>
                             <h5>{pokemon?.nickname?.charAt(0).toUpperCase() + pokemon?.nickname?.slice(1)}</h5>
                             <img src={pokemon.image} id={`pokemonImg-${pokemon._id}`} alt="pokemon" className="opacity" onClick={() => navigate(`/displayOne/${pokemon._id}`)} />
-                            <p
-                                style={
-                                    pokemon.type === 'fire' ? { color: "red", fontWeight: "bolder" } :
-                                        pokemon.type === 'grass' ? { color: "darkgreen", fontWeight: "bolder" } :
-                                            pokemon.type === 'electric' ? { color: "yellow", fontWeight: "bolder" } :
-                                                pokemon.type === 'water' ? { color: "blue", fontWeight: "bolder" } :
-                                                    pokemon.type === 'ice' ? { color: "lightblue", fontWeight: "bolder" } :
-                                                        pokemon.type === 'dragon' ? { color: "rebeccapurple", fontWeight: "bolder" } :
-                                                            pokemon.type === 'psychic' ? { color: "purple", fontWeight: "bolder" } :
-                                                                pokemon.type === 'fighting' ? { color: "brown", fontWeight: "bolder" } :
-                                                                    pokemon.type === 'rock' ? { color: "beige", fontWeight: "bolder" } 
-                                                                        : null
-                                }>{pokemon?.type?.charAt(0).toUpperCase() + pokemon?.type?.slice(1)}</p>
+                            <PokeTypes pokemon={pokemon} />
                             <p>Berries: {pokemon?.berryCount}</p>
-                            <div className="card-buttons">
-                                <button className="green-btn"><Link to={`/editOne/${pokemon._id}`}>Edit</Link></button>
-                                <button className="red-btn" onClick={() => deleteHandler(pokemon._id)}>Delete</button>
-                                <img onClick={() => berryHandler(pokemon)} className="berry" src={Berry} alt="berry" />
-                            </div>
+                            <Button BtnVal={'EditDeleteBerries'} berryHandler={berryHandler} Berry={Berry} pokemon={pokemon} deleteHandler={deleteHandler}/>
                         </div>
                     ))
                 }

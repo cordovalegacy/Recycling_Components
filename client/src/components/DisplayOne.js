@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { useParams } from "react-router-dom"
+import PokeTypes from "./PokeTypes"
 
 const DisplayOne = () => {
 
@@ -37,7 +38,7 @@ const DisplayOne = () => {
                 <h4>Name: {onePokemon?.name?.charAt(0).toUpperCase() + onePokemon?.name?.slice(1)}</h4>
                 <h5>Nickname: {onePokemon?.nickname?.charAt(0).toUpperCase() + onePokemon?.nickname?.slice(1)}</h5>
                 <img src={onePokemon?.image} alt="a pokemon" />
-                <p>Type: {onePokemon?.type?.charAt(0).toUpperCase() + onePokemon?.type?.slice(1)}</p>
+                <PokeTypes onePokemon={onePokemon} />
             </div>
         </div>
     )
